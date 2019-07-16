@@ -1,0 +1,11 @@
+server:
+  port: 8100
+datasource:
+  db-jip:
+    jdbcUrl: jdbc:mysql://localhost:3306/JIP?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: root
+    password:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    test-on-borrow: true
+    validation-query: SELECT 1 FROM dual
+    max-active: 1
