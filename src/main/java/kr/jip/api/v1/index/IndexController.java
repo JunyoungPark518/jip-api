@@ -19,7 +19,6 @@ public class IndexController {
 		return "index";
 	}
 
-	// 카카오ID로 로그인
 	@PostMapping("/login")
 	@ResponseBody
 	public Object login(@RequestParam("phone") String phone

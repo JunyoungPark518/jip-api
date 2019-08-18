@@ -1,7 +1,6 @@
 package kr.jip.api.v1.user;
 
 import kr.jip.api.config.db.annotation.JipDB;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.jdbc.SQL;
 import org.springframework.stereotype.Repository;
 
@@ -14,20 +13,12 @@ import static kr.jip.api.util.SqlUtil.is;
 public class UserProvider {
 
     // 사용자 조회
-    public String selectUserById(Map<String, String> param){
-        final String useYn = param.get("searchUseYn");
-        final String rewardType = param.get("searchType");
+    public String selectUserById(Integer userId){
         return new SQL(){{
             SELECT("*");
             FROM("USER");
             WHERE("1 = 1");
-
-            if(StringUtils.isNotBlank(useYn))
-                AND().WHERE("USE_YN " + is(useYn));
-
-            if(StringUtils.isNotBlank(rewardType))
-                AND().WHERE("REWARD_TYPE " + is(rewardType));
-
+            AND().WHERE("USER_ID " + is(userId));
         }}.toString();
 
     }

@@ -15,9 +15,7 @@ public class UserService {
 	UserMapper userMapper;
 
 	public User selectUserById(int userId) {
-		return userMapper.selectUserById(new HashMap(){{
-			put("userId", userId);
-		}});
+		return userMapper.selectUserById(userId);
 	}
 
 	public User detail(String phone) {

@@ -13,11 +13,8 @@ import java.util.Map;
 public interface UserMapper {
 
 	@SelectProvider(type = UserProvider.class, method = "selectUserById")
-	User selectUserById(Map param);
+	User selectUserById(Integer userId);
 
 	@SelectProvider(type = UserProvider.class, method = "selectUserByPhone")
 	User selectUserByPhone(Map param);
-
-//	Integer updateUserProfile(Map<String, Object> param);
-//	Integer insertUser(Map<String, Object> param);
 }

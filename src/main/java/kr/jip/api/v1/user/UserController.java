@@ -16,4 +16,8 @@ public class UserController {
 	public User detail(@RequestParam("phone") String phone) {
 		return service.detail(phone);
 	}
+
+	@GetMapping("/selectUserById")
+	@ResponseBody
+	public User selectUserById(@RequestParam("userId") Integer userId) { return service.selectUserById(userId); }
 }
