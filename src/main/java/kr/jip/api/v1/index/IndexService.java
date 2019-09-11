@@ -1,6 +1,6 @@
 package kr.jip.api.v1.index;
 
-import kr.jip.api.v1.common.JipResponse;
+import kr.jip.api.v1.common.AppResponseBody;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,18 +16,18 @@ public class IndexService {
 	@Autowired
 	IndexMapper indexMapper;
 
-	public JipResponse login(Map param) {
+	public AppResponseBody login(Map param) {
 		log.info(param.toString());
 		Validation validation = indexMapper.validateUser(param);
 		if(validation.getExistPhone().equalsIgnoreCase("N")) {
-			return new JipResponse(false, "회원 정보가 없어요.");
+			return new AppResponseBody(false, "회원 정보가 없어요.");
 		}
 
 		if(validation.getWrongPassword().equalsIgnoreCase("Y")) {
-			return new JipResponse(false, "비밀번호가 달라요.");
+			return new AppResponseBody(false, "비밀번호가 달라요.");
 		}
 
-		return new JipResponse(indexMapper.updateLastLogin(param) == 1, "로그인 완료");
+		return new AppResponseBody(indexMapper.updateLastLogin(param) == 1, "로그인 완료");
 	}
 
 }

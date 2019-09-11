@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JipResponse {
+public class AppResponseBody {
     private boolean result;
     private String message;
 }
