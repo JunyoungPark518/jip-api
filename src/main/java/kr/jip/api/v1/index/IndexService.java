@@ -18,10 +18,16 @@ public class IndexService {
 
 	public AppResponseBody login(Map param) {
 		log.info(param.toString());
+		log.error(
+				""
+		);
+
+		log.debug("asdasdasdad");
 		Validation validation = indexMapper.validateUser(param);
 		if(validation.getExistPhone().equalsIgnoreCase("N")) {
 			return new AppResponseBody(false, "회원 정보가 없어요.");
 		}
+
 
 		if(validation.getWrongPassword().equalsIgnoreCase("Y")) {
 			return new AppResponseBody(false, "비밀번호가 달라요.");

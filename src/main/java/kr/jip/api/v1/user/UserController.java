@@ -20,4 +20,10 @@ public class UserController {
 	@GetMapping("/selectUserById")
 	@ResponseBody
 	public User selectUserById(@RequestParam("userId") Integer userId) { return service.selectUserById(userId); }
+
+	@GetMapping("/list")
+	@ResponseBody
+	public Object mock() {
+		return service.mock();
+	}
 }
