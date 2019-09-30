@@ -29,13 +29,18 @@ public class UserService {
 	public List<User> mock() {
 		List<User> list = new ArrayList<>();
 		for(int i=0; i<11; i++) {
-			list.add(User.builder()
+			User user = User.builder()
 					.userId(i)
 					.phone("010418948906" + i)
-					.build());
-
+					.build();
+			list.add(user);
+			sysout(user);
 		}
 		return list;
+	}
+
+	private void sysout(User user ) {
+		System.out.println("user.getUserId() >> " + user.getUserId());
 	}
 
 }

@@ -1,5 +1,6 @@
 package kr.jip.api.v1.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements Serializable {
-	private Integer userId;
+	@JsonIgnore private Integer userId;
 	private String username;
 	private String phone;
 	private String thumbnail;
