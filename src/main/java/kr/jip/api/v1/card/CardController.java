@@ -13,12 +13,20 @@ public class CardController {
 	@Autowired
 	CardService service;
 
+
 	@GetMapping("/list")
 	@ResponseBody
-	public List list(@RequestParam("userId") int userId
+	public List list(@RequestParam("userId") int userId) {
+		return service.list(userId);
+	}
+
+	@GetMapping("/usageList")
+	@ResponseBody
+	public CardUsageMain usageList(@RequestParam("userId") int userId
+		, @RequestParam(value="cardId", defaultValue = "0", required = false) int cardId
 		, @RequestParam(value="pageSize", defaultValue = "10", required = false) int pageSize
 		, @RequestParam(value="startIndex", defaultValue = "0", required = false) int startIndex) {
-		return service.list(userId, pageSize, startIndex);
+		return service.usageList(userId, cardId, pageSize, startIndex);
 	}
 
 	@PostMapping("/insert")

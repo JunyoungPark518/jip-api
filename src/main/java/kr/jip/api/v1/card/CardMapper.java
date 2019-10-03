@@ -15,6 +15,12 @@ public interface CardMapper {
 	@SelectProvider(type = CardProvider.class, method = "selectUsageByUserId")
 	List<Usage> selectUsageByUserId(Map param);
 
+	@SelectProvider(type = CardProvider.class, method = "selectCardByUserId")
+	List<Card> selectCardByUserId(Map param);
+
+	@SelectProvider(type = CardProvider.class, method = "selectBenefits")
+	List<CardBenefits> selectBenefits();
+
 	@InsertProvider(type = CardProvider.class, method = "insertUsage")
 	Integer insertUsage(Map param);
 }

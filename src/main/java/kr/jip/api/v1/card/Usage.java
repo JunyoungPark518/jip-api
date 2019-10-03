@@ -13,14 +13,19 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Usage implements Serializable {
-	@JsonIgnore private Integer sequence;
-	private int userId;
-	private int cardId;
-	private int cardBSeq;
+	@JsonIgnore private int sequence;
+	@JsonIgnore private int userId;
+	@JsonIgnore private int cardId;
+	private String cardName;
+	@JsonIgnore private int cardBSeq;
 	private int origin;
+	private double percent;
+	private int minusPrice;
+	private int finalPrice;
 	private String usageName;
 	private String memo;
 	private String cancelYn;
+	private String prePaidYn;
 	private String createTime;
 	private String cancelTime;
 }
