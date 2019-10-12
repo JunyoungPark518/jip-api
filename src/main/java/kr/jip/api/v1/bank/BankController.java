@@ -1,10 +1,9 @@
 package kr.jip.api.v1.bank;
 
+import kr.jip.api.model.ResponseMain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/bank")
@@ -15,7 +14,7 @@ public class BankController {
 
 	@GetMapping("/list")
 	@ResponseBody
-	public List list(@RequestParam("userId") int userId) {
+	public ResponseMain list(@RequestParam("userId") int userId) {
 		return service.list(userId);
 	}
 

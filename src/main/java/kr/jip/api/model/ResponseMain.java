@@ -1,4 +1,4 @@
-package kr.jip.api.v1.card;
+package kr.jip.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +12,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CardUsageMain implements Serializable {
+public class ResponseMain implements Serializable {
 	private String result;
-	private List<Card> cardList;
-	private List<Usage> usageList;
+	private List list;
 }

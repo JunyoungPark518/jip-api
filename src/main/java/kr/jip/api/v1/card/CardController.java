@@ -1,5 +1,6 @@
 package kr.jip.api.v1.card;
 
+import kr.jip.api.model.ResponseMain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,7 @@ public class CardController {
 
 	@GetMapping("/list")
 	@ResponseBody
-	public List list(@RequestParam("userId") int userId) {
+	public ResponseMain list(@RequestParam("userId") int userId) {
 		return service.list(userId);
 	}
 

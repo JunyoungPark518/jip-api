@@ -1,5 +1,6 @@
 package kr.jip.api.v1.card;
 
+import kr.jip.api.model.ResponseMain;
 import kr.jip.api.util.MaskUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +20,24 @@ public class CardService {
 	@Autowired
 	CardMapper cardMapper;
 
-	public List<Card> list(int userId) {
-		return cardMapper.selectCardByUserId(new HashMap(){{
-			put("userId", userId);
-		}})
-		.stream()
-		.peek(card -> card.setMaskCardNo(MaskUtil.getCardMaskingFormat(card)))
-		.collect(toList());
+	public ResponseMain list(int userId) {
+		return ResponseMain.builder()
+				.result("Y")
+				.list(cardMapper.selectCardByUserId(new HashMap(){{
+					put("userId", userId);
+				}})
+						.stream()
+						.peek(card -> card.setMaskCardNo(MaskUtil.getCardMaskingFormat(card)))
+						.collect(toList()))
+				.build()
+		;
 	}
 
 	public CardUsageMain usageList(int userId, int cardId, int pageSize, int startIndex) {
 		List<CardBenefits> benefitsList = cardMapper.selectBenefits();
-		List<Card> cardList = list(userId);
+		List<Card> cardList = (List<Card>) list(userId).getList();
 		List<Card> showCardList = cardList.stream().filter(c -> "Y".equals(c.getShowYn())).collect(toList());
-		Card filteredCard = cardId != 0 ? list(userId).stream().filter(card -> card.getCardId() == cardId).findFirst().get() : null;
+		Card filteredCard = cardId != 0 ? cardList.stream().filter(card -> card.getCardId() == cardId).findFirst().get() : null;
 		List<Usage> list = cardMapper.selectUsageByUserId(new HashMap(){{
 			put("userId", userId);
 			put("pageSize", pageSize);
@@ -46,6 +51,7 @@ public class CardService {
 		return CardUsageMain.builder()
 				.cardList(cardList)
 				.usageList(list)
+				.result("Y")
 				.build();
 	}
 

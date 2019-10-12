@@ -1,11 +1,11 @@
 package kr.jip.api.v1.bank;
 
+import kr.jip.api.model.ResponseMain;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 import static kr.jip.api.v1.bank.EBankAccountStyle.getBankMaskingFormat;
@@ -18,13 +18,16 @@ public class BankService {
 	@Autowired
 	BankMapper bankMapper;
 
-	public List<Bank> list(int userId) {
-		return bankMapper.selectBankByUserId(new HashMap(){{
-			put("userId", userId);
-		}})
-		.stream()
-		.peek(bank -> bank.setMaskAccount(getBankMaskingFormat(bank)))
-		.collect(toList());
+	public ResponseMain list(int userId) {
+		return ResponseMain.builder()
+				.result("Y")
+				.list(bankMapper.selectBankByUserId(new HashMap(){{
+					put("userId", userId);
+				}})
+						.stream()
+						.peek(bank -> bank.setMaskAccount(getBankMaskingFormat(bank)))
+						.collect(toList()))
+				.build();
 	}
 
 	public void insertBank(int userId, String bankName, String account) {
